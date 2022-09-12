@@ -10,10 +10,11 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 #define DHTTYPE DHT11
 #define BULB_BTN PB9
 #define BULB PB8
-#define MOTOR_DOWN PB3
+#define MOTOR_DOWN_BTN PB6
+#define MOTOR_UP_BTN PB7
+#define MOTOR_DOWN PB5
 #define MOTOR_UP PB4
-#define SENSOR_DOWN PB5
-#define SENSOR_UP PB6
+//#define ENABLEMOTOR PA0
  
 DHT dht(DHTPIN, DHTTYPE);  
 
@@ -31,12 +32,14 @@ lcd.clear();
 pinMode(BULB_BTN,INPUT);
 pinMode(BULB,OUTPUT);
 digitalWrite(BULB,LOW);
+//pinMode(ENABLEMOTOR,OUTPUT);
+//analogWrite(ENABLEMOTOR,255);
 
-pinMode(MOTOR_DOWN,INPUT);
-pinMode(MOTOR_UP,INPUT);
-pinMode(SENSOR_DOWN,INPUT);
-pinMode(SENSOR_UP,INPUT);
-pinMode(MOTOR,OUTPUT);
+pinMode(MOTOR_DOWN_BTN,INPUT);
+pinMode(MOTOR_UP_BTN,INPUT);
+pinMode(MOTOR_DOWN,OUTPUT);
+pinMode(MOTOR_UP,OUTPUT);
+//pinMode(MOTOR,OUTPUT);
 
 }
 
@@ -44,12 +47,16 @@ void loop() {
 float humidity = dht.readHumidity();     
 float temperature = dht.readTemperature(); 
 
-if(MOTOR_UP == HIGH && SENSOR_UP = LOW){
-  MOTOR == HIGH;
+if(digitalRead(MOTOR_UP_BTN)){
+ digitalWrite(MOTOR_UP,HIGH);
+}else{
+  digitalWrite(MOTOR_UP,LOW);
 }
 
-if(MOTOR_DOWN == HIGH && SENSOR_DOWN = LOW){
-  MOTOR == HIGH;
+if(digitalRead(MOTOR_DOWN_BTN)){
+ digitalWrite(MOTOR_DOWN,HIGH);
+}else{
+  digitalWrite(MOTOR_DOWN,LOW);
 }
 
 if(digitalRead(BULB_BTN)==HIGH){
@@ -61,6 +68,7 @@ if(digitalRead(BULB_BTN)==HIGH){
     ledflag=0;
     digitalWrite(BULB,LOW);
   }
+  delay(1000); 
 }
 if(millis()-previousTime > 5000){
   previousTime=millis();
