@@ -14,7 +14,7 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 #define MOTOR_UP_BTN PB7
 #define MOTOR_DOWN PB5
 #define MOTOR_UP PB4
-//#define ENABLEMOTOR PA0
+#define ENABLEMOTOR PA0
  
 DHT dht(DHTPIN, DHTTYPE);  
 
@@ -32,8 +32,8 @@ lcd.clear();
 pinMode(BULB_BTN,INPUT);
 pinMode(BULB,OUTPUT);
 digitalWrite(BULB,LOW);
-//pinMode(ENABLEMOTOR,OUTPUT);
-//analogWrite(ENABLEMOTOR,255);
+pinMode(ENABLEMOTOR,OUTPUT);
+analogWrite(ENABLEMOTOR,100);
 
 pinMode(MOTOR_DOWN_BTN,INPUT);
 pinMode(MOTOR_UP_BTN,INPUT);
