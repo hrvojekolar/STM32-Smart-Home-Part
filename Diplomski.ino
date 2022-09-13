@@ -39,7 +39,6 @@ pinMode(MOTOR_DOWN_BTN,INPUT);
 pinMode(MOTOR_UP_BTN,INPUT);
 pinMode(MOTOR_DOWN,OUTPUT);
 pinMode(MOTOR_UP,OUTPUT);
-//pinMode(MOTOR,OUTPUT);
 
 }
 
